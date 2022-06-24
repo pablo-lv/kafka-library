@@ -1,6 +1,6 @@
-package com.learnkaftka.controller;
+package com.learnkafka.controller;
 
-import com.learnkaftka.domain.LibraryEvent;
+import com.learnkafka.domain.LibraryEvent;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
