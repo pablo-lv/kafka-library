@@ -57,10 +57,10 @@ public class LibraryEventProducer {
         try {
             sendResult = kafkaTemplate.sendDefault(key, value).get(1, TimeUnit.SECONDS);
         } catch (ExecutionException | InterruptedException e) {
-            log.error("ExecutionException | InterruptedException  sending the message and the exception is {}", ex.getMessage());
+            log.error("ExecutionException | InterruptedException  sending the message and the exception is {}", e.getMessage());
             throw e;
         } catch (Exception e) {
-            log.error("Exception sending the message and the exception is {}", ex.getMessage());
+            log.error("Exception sending the message and the exception is {}", e.getMessage());
             throw e;
         }
 
