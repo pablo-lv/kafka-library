@@ -10,6 +10,7 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -53,6 +54,7 @@ public class LibraryEventsControllerIntegrationTest {
     }
 
     @Test
+    @Timeout(5)
     void postLibraryEvent() throws InterruptedException {
         final Book book = Book.builder()
                 .bookId(1)
@@ -76,7 +78,7 @@ public class LibraryEventsControllerIntegrationTest {
         ConsumerRecord<Integer, String> consumerRecord = KafkaTestUtils.getSingleRecord(consumer, "library-events");
         Thread.sleep(3000);
         String expectedRecord =
-                "{\"libraryEventId\":null,\"libraryEventType\":\"NEW\",\"book\":{\"bookId\":1,\"bookName\":\"Title\",\"bookAuthor\":\"Author\"}}";
+                "{\"libraryEventId\":null,\"libraryEventType\":\"NEW\",\"book\":{\"bookId\": 1,\"bookName\":\"Title\",\"bookAuthor\":\"Author\"}}";
         String value = consumerRecord.value();
         assertEquals(expectedRecord, value);
 
